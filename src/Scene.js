@@ -28,16 +28,10 @@ const Scene = () => {
       <Cloud opacity={1} speed={0.2} depth={4}/>
       {/* <Sky sunPosition={sunPosition} /> */}
 
-      <Environment background files={[
-        "./envMap/px.png",
-        "./envMap/nx.png",
-        "./envMap/py.png",
-        "./envMap/ny.png",
-        "./envMap/pz.png",
-        "./envMap/nz.png",
-      ]} />
+      <Environment background files={
+        "./envMap/puresky.hdr"} />
       <mesh receiveShadow position-y={-1} rotation-x={-Math.PI * 0.5}>
-        <planeGeometry args={[8, 8]} />
+        {/* <planeGeometry args={[8, 8]} /> */}
         <meshStandardMaterial color="#CC3941" />
       </mesh>
     </>

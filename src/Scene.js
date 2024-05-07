@@ -1,4 +1,4 @@
-import { OrbitControls, useHelper, Sparkles, Stars, Cloud, Sky, Environment } from "@react-three/drei";
+import { OrbitControls, useHelper, Sparkles, Stars, Cloud, Sky, Environment, Lightformer } from "@react-three/drei";
 import { useRef } from "react";
 import { useControls } from "leva";
 import * as THREE from "three";
@@ -34,7 +34,11 @@ const Scene = () => {
       {/* <Sky sunPosition={sunPosition} /> */}
 
       <Environment background files={
-        "./envMap/puresky.hdr"} />
+        "./envMap/puresky.hdr"}>
+          {/* <planeGeometry />
+          <meshBasicMaterial color="orange"/> */}
+          <Lightformer position-z={-1} scale={5} color="orange"  intensity={5}/>
+        </Environment>
       <mesh receiveShadow position-y={-1} rotation-x={-Math.PI * 0.5}>
         {/* <planeGeometry args={[8, 8]} /> */}
         <meshStandardMaterial color="#CC3941" />

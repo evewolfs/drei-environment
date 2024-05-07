@@ -13,7 +13,13 @@ const Scene = () => {
   })
 
   const {meshIntensity} = useControls("mesh Intensity",{
-    meshIntensity: {value: 1, min:0, max:5},
+    meshIntensity: {value: 6, min:0, max:20},
+  })
+
+  const {height, radius, scale} = useControls("ground",{
+    height: {value: 1, min:0, max:5},
+    radius: {value: 60, min:0, max:100},
+    scale: {value: 70, min:0, max:100},
   })
 
 
@@ -33,14 +39,14 @@ const Scene = () => {
       <Cloud opacity={1} speed={0.2} depth={4}/>
       {/* <Sky sunPosition={sunPosition} /> */}
 
-      <Environment background files={
-        "./envMap/puresky.hdr"}>
+      <Environment files={
+        "./envMap/puresky.hdr"} ground={{height:height, radius:radius, scale:scale}}>
           {/* <planeGeometry />
           <meshBasicMaterial color="orange"/> */}
           <Lightformer position-z={-1} scale={5} color="orange"  intensity={5}/>
         </Environment>
-      <mesh receiveShadow position-y={-1} rotation-x={-Math.PI * 0.5}>
-        {/* <planeGeometry args={[8, 8]} /> */}
+      <mesh receiveShadow position-y={0} rotation-x={-Math.PI * 0.5}>
+        <planeGeometry args={[8, 8]} />
         <meshStandardMaterial color="#CC3941" />
       </mesh>
     </>

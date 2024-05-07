@@ -9,19 +9,24 @@ const Scene = () => {
   const {sunPosition} = useControls({
     sunPosition: {
       value: [0,1,0],
-      step: 0.01
     }
   })
+
+  const {meshIntensity} = useControls("mesh Intensity",{
+    meshIntensity: {value: 1, min:0, max:5},
+  })
+
+
   return (
     <>
       <OrbitControls />
     
       <directionalLight castShadow ref={lightRef} position={[1,1,0]} color="blue" intensity={1}/>
 
-      {/* <mesh castShadow>
+      <mesh castShadow>
         <boxGeometry />
-        <meshStandardMaterial color="#C7CAC7" />
-      </mesh> */}
+        <meshStandardMaterial color="#C7CAC7" envMapIntensity={meshIntensity} />
+      </mesh>
 
       {/* <Sparkles count={100} speed={0.5} opacity={3} color="red" scale={[10,10,10]} size={2}/> */}
       <Stars radius={2} depth={50} count={5000} factor={4} saturation={0} fade speed={1} segments={4} depthTest={false} />
